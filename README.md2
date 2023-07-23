@@ -1,0 +1,105 @@
+## 따로 모아본 정리본
+
+Scaffold(
+        appBar: AppBar(),
+        body: Container(),
+        bottomNavigationBar: BottomAppBar(),
+      )
+
+어플의 상중하 를 만들 때 사용하는 코드
+----------------------------------------------------------------
+
+Row(
+          children: const [
+            Icon(Icons.shop),
+            Icon(Icons.star),
+            Icon(Icons.water)
+
+가로로 위젯 배치하는 법
+----------------------------------------------------------------
+
+Column(
+          children: const [
+            Icon(Icons.shop),
+            Icon(Icons.star),
+            Icon(Icons.water)
+----------------------------------------------------------------
+
+mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+.spaceEvenly 는 모든 여백 동일
+
+.spaceBetween 은 좌우 끝에 우선 배치
+
+.spaceAround는 모든 여백 동일인데 좌우 마지막 여백은 절반만큼
+
+.start는 시작 부분에 다 모여
+
+.end는 끝 부분에 다 모여
+
+.center는 중간에 다 모여 
+
+입니다. 외울 필요는 없고 점찍고 자동완성기능 활용하면 됩니다.
+------------------------------------------------------------------------
+Scaffold(
+        appBar: AppBar( title: Text('어플')),
+        body: Container(
+          width: 150, height: 50, color: C olors.blue,
+          margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+          child: Text('안녕'),
+        ),
+      )
+박스 margin 여백주는거라고 보면 될 듯
+------------------------------------------------------------------------
+
+ Align(
+          alignment: Alignment.bottomLeft,
+
+정렬해줄 때 좋은 코드
+
+ ------------------------------------------------------------------------
+
+Textbutton()
+IconButton()
+ElevatedButton()
+
+버튼들
+3번째가 가장 무난하게 예쁨
+ ------------------------------------------------------------------------
+
+appBar: AppBar( actions: [Icon(Icons.star),Icon(Icons.star),Icon(Icons.star)],title: Text('jaeha'),),
+
+leading은 좌측 상단에 서랍 같은 학목 넣을 때 그 짝대기 3개짜리 가로로 그런거
+------------------------------------------------------------------------
+Flexible(child: Container(color: Colors.blue), flex: 5),
+            Flexible(child: Container(color: Colors.green), flex: 5),
+            Flexible(child: Container(color: Colors.red), flex: 5),
+퍼센티지로 정확히 구분해주고 싶을 때 사용
+------------------------------------------------------------------------
+
+ListView.builder(
+          itemCount: 2,
+          itemBuilder: (c, i){
+            return ListTile(
+              leading: Image.asset('123.jpeg'),
+              title: Text('홍길동'),
+            );
+          },
+        )
+
+간단한 반복문
+------------------------------------------------------------------------
+ floatingActionButton: FloatingActionButton(
+          child: Text(a.toString()),
+          onPressed: (){
+            setState(() {
+              a++;
+            });
+          },
+        ),
+------------------------------------------------------------------------
+
+navigator.pop(context);
+현재 페이지 닫기
+
+------------------------------------------------------------------------
