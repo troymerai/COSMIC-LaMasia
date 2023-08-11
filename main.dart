@@ -1,33 +1,125 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertest/home.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:fluttertest/DateDetailPage.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await initializeDateFormatting();
+  await DateDetailPage.init();
+
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
+      home: MyApp(),
+    ),
+  );
 }
+
+List<String> secreat = [];
+String myStr = '';
+String configuredStr = "1234";
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
+
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Align(
-          alignment: Alignment.bottomLeft,            // container 좌하단 정렬 >> Align() 사용
-          child: Container(width: 200, height: 200,
-            decoration: BoxDecoration(                // Container 스타일 주는 법
-              color: Colors.pink,  // 컬러 핑크 설정
-              border: Border.all(color: Colors.black), // container 테두리 검정 설정
-              shape:BoxShape.circle // container 모양 둥글게 설정
-            )
+    return Scaffold(
+      body: Column(
+        children: [
+          Container(
+            height: 100,
+            child: Text(
+              '비밀번호',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+            ),
+            alignment: Alignment.center,
           ),
-        )
-      )
-
+          Expanded(
+            child: MyCustomGridView(),
+          ),
+          GestureDetector(
+            onTap: () {
+              myStr = secreat.join();
+              print(myStr);
+              if (myStr == configuredStr) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Home(),
+                    ));
+              } else {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text('비밀번호를 다시 입력해주세요.'),
+                        actions: [
+                          Center(
+                            child: ElevatedButton(
+                                child: Text('확인'),
+                                onPressed: () {
+                                  Navigator.of(context).pop(); //Dialog 창 닫기
+                                  secreat.clear(); // secret 초기화
+                                  myStr = ''; // myStr 초기화
+                                }),
+                          )
+                        ],
+                      );
+                    });
+              }
+            },
+            child: Container(
+              color: Colors.white,
+              width: 100,
+              height: 70,
+              padding: EdgeInsets.only(bottom: 30),
+              child: Center(
+                child: Text(
+                  '확인',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
-
   }
 }
 
+class MyCustomGridView extends StatelessWidget {
+  MyCustomGridView({Key? key});
 
-
-
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      padding: EdgeInsets.all(10),
+      itemCount: 9,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        mainAxisSpacing: 10.0,
+        crossAxisSpacing: 10.0,
+      ),
+      itemBuilder: (BuildContext bc, int index) {
+        return GestureDetector(
+          onTap: () {
+            secreat.add((index + 1).toString());
+          },
+          child: Container(
+            color: Colors.white,
+            child: Center(
+              child: Text(
+                (index + 1).toString(),
+                style: TextStyle(fontSize: 30),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
