@@ -26,15 +26,17 @@ class _AnswerState extends State<Answer> {
     final prefs = await SharedPreferences.getInstance();
 
     setState(() {
+      String index = widget.index.toString();
       answer_text = Answer_Controller.text;
-      prefs.setString("current_answer", answer_text);
+      prefs.setString("current_answer+${index}", answer_text);
     });
   }
 
   GetText() async {
     prefs = await SharedPreferences.getInstance();
     setState(() {
-      answer_text = prefs.getString("current_answer") ?? "";
+      String index = widget.index.toString();
+      answer_text = prefs.getString("current_answer+${index}") ?? "";
       Answer_Controller.text = answer_text;
     });
   }

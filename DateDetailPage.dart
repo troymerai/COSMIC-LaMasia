@@ -35,7 +35,9 @@ class _DateDetailPageState extends State<DateDetailPage> {
       usertext = usertextController.text;
     });
     // 매개변수로 받은대로 데이터 이름 지정해주기
-    await prefs.setString("current_text", usertext);
+    await prefs.setString(
+        "${widget.selectedDay.year}-${widget.selectedDay.month}-${widget.selectedDay.day}",
+        usertext);
   }
 
   // 매개변수로 지정한 날짜와 이름이 같으면 보여주기
@@ -43,7 +45,9 @@ class _DateDetailPageState extends State<DateDetailPage> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       // 매개변수로 받은대로 데이터 이름 지정해주기
-      usertext = prefs.getString("current_text") ?? "";
+      usertext = prefs.getString(
+              "${widget.selectedDay.year}-${widget.selectedDay.month}-${widget.selectedDay.day}") ??
+          "";
       usertextController.text = usertext;
     });
   }

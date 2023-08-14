@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertest/Answer.dart';
+import 'Answer.dart';
 
 class questionnaire extends StatefulWidget {
   questionnaire({Key? key});
@@ -29,6 +29,7 @@ class _questionnaireState extends State<questionnaire> {
     // 질문 추가 버튼 누를 때마다 questionList에 add_questionlist 질문 하나씩 추가
     questionList.insert((a + 1), add_questionlist[a]);
     setState(() {
+      print(a);
       a++;
     });
   }
@@ -46,6 +47,7 @@ class _questionnaireState extends State<questionnaire> {
             onTap: () {
               currentQuestion = questionList[i];
               index = i;
+              print("이것은 I : ${i}");
               print(questionList);
               Navigator.push(
                   context,

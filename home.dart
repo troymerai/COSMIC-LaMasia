@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_final/questionnaire.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:fluttertest/questionnaire.dart';
-import 'package:fluttertest/DateDetailPage.dart';
+
+import 'DateDetailPage.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
