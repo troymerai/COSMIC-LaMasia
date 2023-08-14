@@ -10,6 +10,7 @@ class questionnaire extends StatefulWidget {
 
 class _questionnaireState extends State<questionnaire> {
   int a = 0;
+  int index = 0;
   String currentQuestion = "";
 
   final add_questionlist = [
@@ -44,11 +45,12 @@ class _questionnaireState extends State<questionnaire> {
           return GestureDetector(
             onTap: () {
               currentQuestion = questionList[i];
+              index = i;
               print(questionList);
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Answer(currentQuestion),
+                    builder: (context) => Answer(currentQuestion, index),
                   ));
             },
             child: ListTile(

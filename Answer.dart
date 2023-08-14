@@ -4,7 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Answer extends StatefulWidget {
   String currentQuestion = "";
-  Answer(this.currentQuestion);
+  int index = 0;
+  Answer(this.currentQuestion, this.index);
 
   @override
   State<Answer> createState() => _AnswerState();
